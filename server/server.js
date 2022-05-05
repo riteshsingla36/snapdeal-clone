@@ -13,7 +13,9 @@ app.use(cors());
 app.use("/user", UserController);
 app.use("/seller", SellerController);
 
+const connect = () => mongoose.connect(process.env.MONGODB_URL)
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT, async () => {
+    await connect()
     console.log('listening on port ' + process.env.PORT)
 })
